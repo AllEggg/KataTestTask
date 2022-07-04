@@ -31,12 +31,8 @@ class RomanCalc {
         int leftArabic = fromRoman(leftSide);
         int rightArabic = fromRoman(rightSide);
 
-        if (leftArabic == 0 || rightArabic == 0) {
-            throw new RuntimeException("Один из символов не является римской цифрой в диапазоне I - X, вы ввели " +
-                    leftSide + " и " + rightSide);
-        }
         int calc = Integer.parseInt(new ArabianCalc()
-                .arabianCalc(String.valueOf(leftArabic), String.valueOf(rightArabic), operator));
+                .arabianCalc(leftArabic, rightArabic, operator));
 
         if (calc < 1) {
             throw new RuntimeException("В римской системе нет отрицательных чисел. Результат в арабской системе: " + calc);

@@ -3,12 +3,18 @@ import java.util.Scanner;
 class Main {
 
     public static void main(String[] args) {
+        System.out.println("""
+                Привет! Это калькулятор, который выполняет операции с римскими и арабскими числами при соблюдении следующих условий:
+                 -два операнда и один оператор (+, -, /, *);
+                 -оба операнда должны быть либо римской системы, либо арабской;
+                 -вводить можно только целые числа от 1 до 10.
+                \s
+                Введите выражение в консоль.""");
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println(calc(sc.nextLine()));
         }
     }
-
     public static String calc(String input) {
         String result = "";
         String operator;
@@ -37,11 +43,12 @@ class Main {
         } else {
             throw new RuntimeException("Неверный ввод. Корректный формат:" +
                     " два операнда и один оператор (+, -, /, *); оба операнда должны быть либо римской" +
-                    " системы, либо арабской; вводить можно только целые числа. Вы ввели: " + input);
+                    " системы, либо арабской; вводить можно только целые числа от 1 до 10. Вы ввели: " + input);
         }
 
         switch (numberSystem) {
-            case ("arabian") -> result = new ArabianCalc().arabianCalc(leftSide, rightSide, operator);
+            case ("arabian") -> result = new ArabianCalc().arabianCalc(Integer.parseInt(leftSide),
+                    Integer.parseInt(rightSide), operator);
             case ("roman") -> result = new RomanCalc().romanCalc(leftSide, rightSide, operator);
         }
         return result;
